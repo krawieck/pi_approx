@@ -8,6 +8,10 @@
     <script src="https://cdn.jsdelivr.net/npm/async-worker/dist/async-worker.web.js"></script>
   </head>
   <style>
+    h1 {
+      margin-block-start: 0.1em;
+      margin-block-end: 0.1em;
+    }
     @media (prefers-color-scheme: dark) {
       body {
         background-color: black;
@@ -25,19 +29,41 @@
     }
   </style>
   <body>
-    <h1>
-      the real &pi; =
-      <script>
-        document.write(Math.PI)
-      </script>
-    </h1>
-    <h1>approximated &pi; = <span id="pi"></span></h1>
+    <table>
+      <tr>
+        <h1>
+          <td><h1>the real</h1></td>
+          <td>
+            <h1>
+              &pi; =
+              <script>
+                document.write(Math.PI)
+              </script>
+            </h1>
+          </td>
+        </h1>
+      </tr>
+      <tr>
+        <td>
+          <h1>approximated &nbsp;</h1>
+        </td>
+        <td>
+          <h1>&pi; = <span id="pi"></span></h1>
+        </td>
+      </tr>
+    </table>
+    <br />
     <h1>iteration: <span id="iter"></span></h1>
     <button id="pause_resume" onclick="pauseResume()">pause</button>
 
     <hr />
     <h2>calc now</h2>
-    <input style="width: 300px" type="number" id="calc_now_input" placeholder="iterations" />
+    <input
+      style="width: 300px"
+      type="number"
+      id="calc_now_input"
+      placeholder="iterations"
+    />
     <button onclick="calcNow()">calculate</button>
 
     <span id="pi_fast"></span>
@@ -69,7 +95,9 @@
       }, input)
 
       approx.tick(progress => {
-        const tracker = `calculating... (${Math.floor(progress * 10000) / 100}%)`
+        const tracker = `calculating... (${
+          Math.floor(progress * 10000) / 100
+        }%)`
         const ref = document.querySelector('#pi_fast')
         if (ref.innerText != tracker) ref.innerText = tracker
       })
